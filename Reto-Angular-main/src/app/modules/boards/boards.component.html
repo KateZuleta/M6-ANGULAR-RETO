@@ -1,0 +1,154 @@
+<body>
+  <div>
+    <img class="logo"
+      src="https://www.bancolombia.com/wcm/connect/a67af2d6-c768-4f4f-a33b-fd58074f7ce9/logo-bancolombia-black.svg?MOD=AJPERES"
+      alt="Logo Bancolombia" />
+  </div>
+
+  <div class="container">
+    <div class="menu-section">
+      <h2>Consultas</h2>
+      <div class="option-group">
+        <button class="option-button" (click)="mostrarFormularioSaldo()">Consultar saldo
+          cuenta</button>
+        <button class="option-button" (click)="mostrarHistorico(); historico('012345')">Consultar histórico
+          cuenta</button>
+
+      </div>
+    </div>
+    <div class="menu-section">
+      <h2>Transacciones</h2>
+      <div class="option-group">
+        <button class="option-button" (click)="mostrarFormularioRetiro()">Retirar</button>
+        <button class="option-button" (click)="mostrarFormularioDeposito()">Depositar</button>
+        <button class="option-button" (click)="mostrarFormularioCompra()">Comprar</button>
+      </div>
+    </div>
+
+    <!-- Formulario de consulta saldo -->
+    <div *ngIf="openFormularioSaldo">
+      <h2>Formulario de consulta saldo</h2>
+      <form [formGroup]="formularioSaldo" (ngSubmit)="enviarFormularioSaldo()">
+        <div class="form-group">
+          <label for="idCuenta">Id Cuenta:</label>
+          <input type="number" id="idCuenta" formControlName="idCuenta" required/>
+        </div>
+        <button type="submit" [disabled]="!formularioSaldo.valid">Consultar saldo</button>
+        <button (click)="cancelModal()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Formulario de retiro -->
+    <div *ngIf="openFormularioRetiro">
+      <h2>Formulario de retiro</h2>
+      <form [formGroup]="formularioRetiro" (ngSubmit)="enviarFormularioRetiro()">
+        <div class="form-group">
+          <label for="idCuenta">Id Cuenta:</label>
+          <input type="number" id="idCuenta" formControlName="idCuenta"required />
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Monto:</label>
+          <input type="number" id="monto" formControlName="monto" required/>
+        </div>
+
+        <button type="submit" [disabled]="!formularioRetiro.valid">Retirar</button>
+        <button (click)="cancelModal()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Formulario de depósito -->
+    <div *ngIf="openFormularioDeposito">
+      <h2>Formulario de depósito</h2>
+      <form [formGroup]="formularioDeposito" (ngSubmit)="enviarFormularioDeposito()">
+        <div class="form-group">
+          <label for="idCuenta">Id Cuenta:</label>
+          <input type="number" id="idCuenta" formControlName="idCuenta" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Monto:</label>
+          <input type="number" id="monto" formControlName="monto" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="tipoDeposito">Tipo de depósito:</label>
+          <select formControlName="tipoDeposito">
+            <option value="" disabled selected>Seleccione un tipo</option>
+            <option *ngFor="let tipoDeposito of opcionesDeposito" [value]="tipoDeposito">{{ tipoDeposito }}</option>
+          </select>
+        </div>
+
+        <button type="submit" [disabled]="!formularioDeposito.valid">Depositar</button>
+        <button (click)="cancelModal()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Formulario de compra -->
+    <div *ngIf="openFormularioCompra">
+      <h2>Formulario de compra</h2>
+      <form [formGroup]="formularioCompra" (ngSubmit)="enviarFormularioCompra()">
+        <div class="form-group">
+          <label for="idCuenta">Id Cuenta:</label>
+          <input type="number" id="idCuenta" formControlName="idCuenta" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Monto:</label>
+          <input type="number" id="monto" formControlName="monto" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="tipoCompra">Tipo de compra:</label>
+          <select formControlName="tipoCompra">
+            <option value="" disabled selected>Seleccione un tipo</option>
+            <option *ngFor="let tipoCompra of opcionesCompra" [value]="tipoCompra">{{ tipoCompra }}</option>
+          </select>
+        </div>
+
+        <button type="submit" [disabled]="!formularioCompra.valid">Comprar</button>
+        <button (click)="cancelModal()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Historial de transacciones -->
+    <div *ngIf="results.length > 0" class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Histórico de Resultados</h5>
+        <div class="table-scroll-container">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Id_Transaccion</th>
+                <th>Tipo_Transaccion</th>
+                <th>Sub_Tipo_Transaccion</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of results; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ result.Id_Transaccion }}</td>
+                <td>{{ result.Tipo_Transaccion }}</td>
+                <td>{{ result.Sub_Tipo_Transaccion }}</td>
+                <td>{{ result.Monto }}</td>
+                <td>{{ result.Fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="openModalFlag" class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>{{ modalTitle }}</h3>
+        <pre>{{ modalMessage }}</pre>
+      </div>
+    </div>
+
+  </div>
+</body>
