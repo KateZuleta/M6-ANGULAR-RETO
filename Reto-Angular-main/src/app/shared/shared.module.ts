@@ -5,7 +5,6 @@ import { AlertComponent } from './components/alert/alert.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     AlertComponent,
     FooterComponent,
     NavbarComponent,
-    CarouselComponent,
-    FormularioComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule
@@ -24,8 +22,7 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     AlertComponent,
     FooterComponent,
     NavbarComponent,
-    CarouselComponent,
-    FormularioComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule { }

@@ -40,7 +40,7 @@ public class TransaccionService {
         return DepositoResponse.builder()
                 .saldoCuenta(cuenta.getSaldo())
                 .valor(transaccion.getValor())
-                .cuentaId(cuenta.getId())
+                .nroCuenta(cuenta.getNroCuenta())
                 .subTipoTransaccion(transaccion.getSubTipoTransaccion())
                 .tipoTransaccion(transaccion.getTipoTransaccion())
                 .build();
@@ -61,7 +61,7 @@ public class TransaccionService {
         return CompraResponse.builder()
                 .saldoCuenta(cuenta.getSaldo())
                 .valor(transaccion.getValor())
-                .cuentaId(cuenta.getId())
+                .nroCuenta(cuenta.getNroCuenta())
                 .subTipoTransaccion(transaccion.getSubTipoTransaccion())
                 .tipoTransaccion(transaccion.getTipoTransaccion())
                 .build();
@@ -101,7 +101,7 @@ public class TransaccionService {
         return RetiroResponse.builder()
                 .saldoCuenta(cuenta.getSaldo())
                 .valor(transaccion.getValor())
-                .cuentaId(cuenta.getId())
+                .nroCuenta(cuenta.getNroCuenta())
                 .tipoTransaccion(transaccion.getTipoTransaccion())
                 .build();
     }

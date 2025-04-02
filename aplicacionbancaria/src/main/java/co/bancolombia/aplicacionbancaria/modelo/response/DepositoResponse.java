@@ -1,6 +1,5 @@
 package co.bancolombia.aplicacionbancaria.modelo.response;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 @Builder
 public class DepositoResponse {
-    private Long cuentaId;
+    private String nroCuenta;
     private BigDecimal saldoCuenta;
     private BigDecimal valor;
     private String tipoTransaccion;

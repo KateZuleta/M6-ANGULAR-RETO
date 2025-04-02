@@ -21,26 +21,26 @@ export class TransaccionesService {
     return this.httpClient.post<any>(this.urlsaldo,body)
   }
 
-  realizarRetiro(idCuenta: number, monto: number): Observable<any>{
+  realizarRetiro(idCuenta: string, monto: number): Observable<any>{
     const body = {idCuenta, monto}
     console.log(body);
     return this.httpClient.post<any>(this.urlretirar,body)
   }
 
-  realizarDeposito(idCuenta: number, monto: number, tipoDeposito: string): Observable<any>{
+  realizarDeposito(idCuenta: string, monto: number, tipoDeposito: string): Observable<any>{
     const body = {idCuenta, monto, tipoDeposito}
     console.log(body);
     return this.httpClient.post<any>(this.urldepositar,body)
   }
 
-  realizarCompra(idCuenta: number, monto: number, tipoCompra: string): Observable<any>{
+  realizarCompra(idCuenta: string, monto: number, tipoCompra: string): Observable<any>{
     const body = {idCuenta, monto, tipoCompra}
     console.log(body);
     return this.httpClient.post<any>(this.urlcomprar,body)
   }
 
-  realizarHistorial(idCuenta: string): Observable<any>{
-    const body = {idCuenta};
+  realizarHistorial(idCuenta: string): Observable<any> {
+    const body = { idCuenta };
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post<any>(this.urlhistorial, body, { headers });
   }

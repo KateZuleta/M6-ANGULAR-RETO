@@ -37,11 +37,10 @@ public class TransaccionController {
         return transaccionService.Compra(compraDTO);
     }
 
-    // Cambié a @GetMapping para que sea una consulta
+    @CrossOrigin(origins = "http://localhost:4200")  // Permite solicitudes de Angular
     @GetMapping("/{cuenta}")
     public ResponseEntity<List<Transaccion>> obtenerTransacciones(
             @PathVariable("cuenta") String cuenta) {
-
         List<Transaccion> transacciones = transaccionService.Transacciones(cuenta);
         return ResponseEntity.ok(transacciones);
     }

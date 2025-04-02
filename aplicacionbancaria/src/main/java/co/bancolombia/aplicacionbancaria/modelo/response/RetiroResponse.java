@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 @Builder
 public class RetiroResponse {
-    private Long cuentaId;
+    private String nroCuenta;
     private BigDecimal saldoCuenta;
     private BigDecimal valor;
     private String tipoTransaccion;

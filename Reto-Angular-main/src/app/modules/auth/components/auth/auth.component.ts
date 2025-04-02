@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
       if(usuario === 'katerine' && password === '12345678') {
         console.log('Usuario logueado');
         this.state.userEmail = 'ktzuleta@gmail.com';
-        console.log('Usuario logueado2');
+        console.log('Usuario validado');
         this.router.navigate(['/auth/boards']);
       }else {
         alert('Usuario o contraseña incorrectos');
