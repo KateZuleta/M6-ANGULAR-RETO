@@ -11,7 +11,7 @@
       <div class="option-group">
         <button class="option-button" (click)="mostrarFormularioSaldo()">Consultar saldo
           cuenta</button>
-        <button class="option-button" (click)="mostrarHistorico(); historico('012345')">Consultar histórico
+        <button class="option-button" (click)="mostrarHistorico(); historico('141516')">Consultar histórico
           cuenta</button>
 
       </div>
@@ -130,11 +130,11 @@
             <tbody>
               <tr *ngFor="let result of results; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ result.Id_Transaccion }}</td>
-                <td>{{ result.Tipo_Transaccion }}</td>
-                <td>{{ result.Sub_Tipo_Transaccion }}</td>
-                <td>{{ result.Monto }}</td>
-                <td>{{ result.Fecha }}</td>
+                <td>{{ result.id }}</td>
+                <td>{{ result.tipoTransaccion }}</td>
+                <td>{{ result.subTipoTransaccion }}</td>
+                <td>{{ result.valor }}</td>
+                <td>{{ result.timestamp }}</td>
               </tr>
             </tbody>
           </table>
