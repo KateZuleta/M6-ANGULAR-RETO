@@ -40,8 +40,6 @@ export class TransaccionesService {
   }
 
   realizarHistorial(idCuenta: string): Observable<any> {
-    const body = { idCuenta };
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post<any>(this.urlhistorial, body, { headers });
+    return this.httpClient.get(`${this.urlhistorial}/${idCuenta}`);
   }
 }
